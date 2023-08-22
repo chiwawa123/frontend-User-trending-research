@@ -1,0 +1,62 @@
+<div id="banner-area" class="banner-area" style="background-image:url(assets/images/banner/banner1.jpg)">
+    <div class="banner-text">
+      <div class="container">
+          <div class="row">
+            <div class="col-lg-12">
+                <div class="banner-heading">
+                  <h1 class="banner-title">News</h1>
+                  <nav aria-label="breadcrumb">
+                      <ol class="breadcrumb justify-content-center">
+                        <li class="breadcrumb-item"><a href="#">Home</a></li>
+                        <li class="breadcrumb-item"><a href="#">News</a></li>
+                        <li class="breadcrumb-item active" aria-current="page">News Right sidebar</li>
+                      </ol>
+                  </nav>
+                </div>
+            </div><!-- Col end -->
+          </div><!-- Row end -->
+      </div><!-- Container end -->
+    </div><!-- Banner text end -->
+  </div><!-- Banner area end --> 
+  
+  <section id="news" class="news">
+    <div class="container">
+      <div class="row text-center">
+          <div class="col-12">
+           
+          </div>
+      </div>
+      <!--/ Title row end -->
+  
+      <div class="row">
+  
+          <div class="col-lg-4 col-md-6 mb-4" *ngFor="let d of data | paginate:{itemsPerPage:itemsPerPage,currentPage:p}">
+            <div class="latest-post">
+                <div class="latest-post-media">
+                  <a (click)="navigateToTopic(d)" class="latest-post-img">
+                      <img loading="lazy" class="img-fluid" src="{{imagePath}}{{d.image}}" style="height: 300px;width: 300px;" alt="img">
+                      
+                  </a>
+                </div>
+                <div class="post-body">
+                  <h4 class="post-title">
+                      <a href="news-single.html" class="d-inline-block">{{d.topic_name}}</a>
+                  </h4>
+                  <div class="latest-post-meta">
+                      <span class="post-item-date">
+                        <i class="fa fa-clock-o"></i>{{d.date_posted}}
+                      </span>
+                  </div>
+                </div>
+            </div><!-- Latest post end -->
+          </div><!-- 3rd post col end -->
+         
+      </div>
+      <div class="row">
+        <pagination-controls class="text-primary text-center" (pageChange)="p=$event" >
+
+        </pagination-controls>
+      </div>
+    </div>
+    <!--/ Container end -->
+  </section>

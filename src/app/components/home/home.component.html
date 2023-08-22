@@ -1,0 +1,66 @@
+<app-slider></app-slider>
+<section class="call-to-action-box no-padding">
+    <div class="container">
+      <div class="action-style-box">
+          <div class="row align-items-center">
+            <div class="col-md-8 text-center text-md-left">
+                <div class="call-to-action-text">
+                  <h3 class="action-title">CUT TRENDING RESEARCH TOPICS</h3>
+                </div>
+            </div><!-- Col end -->
+            <div class="col-md-4 text-center text-md-right mt-3 mt-md-0">
+                <div class="call-to-action-btn">
+                  <a class="btn btn-dark" href="#">Request Quote</a>
+                </div>
+            </div><!-- col end -->
+          </div><!-- row end -->
+      </div><!-- Action style box -->
+    </div><!-- Container end -->
+  </section><!-- Action end -->
+
+ 
+  
+  <section id="news" class="news">
+    <div class="container">
+      <div class="row text-center">
+          <div class="col-12">
+           
+          </div>
+      </div>
+      <!--/ Title row end -->
+  
+      <div class="row">
+  
+          <div class="col-lg-4 col-md-6 mb-4" *ngFor="let d of data | paginate:{itemsPerPage:itemsPerPage,currentPage:p}">
+            <div class="latest-post">
+                <div class="latest-post-media">
+                  <a (click)="navigateToTopic(d)" class="latest-post-img">
+                      <img loading="lazy" class="img-fluid" src="{{imagePath}}{{d.image}}" style="height: 300px;width: 300px;" alt="img">
+                      
+                  </a>
+                </div>
+                <div class="post-body">
+                  <h4 class="post-title">
+                      <a  (click)="navigateToTopic(d)"  class="d-inline-block"><span>{{d.topic_name}}</span></a>
+                  </h4>
+                  <div class="latest-post-meta">
+                      <span class="post-item-date">
+                        <i class="fa fa-clock-o"></i>{{d.date_posted}}
+                      </span>
+                  </div>
+                </div>
+            </div><!-- Latest post end -->
+          </div><!-- 3rd post col end -->
+          <div>
+            <pagination-controls class="text-primary text-center" (pageChange)="p=$event" >
+
+            </pagination-controls>
+          </div>
+      </div>
+      <!--/ Content row end -->
+
+  
+    </div>
+    <!--/ Container end -->
+  </section>
+  <!--/ News end -->
