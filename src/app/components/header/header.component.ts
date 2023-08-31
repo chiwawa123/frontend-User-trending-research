@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
+import { AuthServiceService } from 'src/app/Services/auth-service.service';
 import { SliderServiceService } from 'src/app/Services/slider-service.service';
 
 @Component({
@@ -11,11 +12,17 @@ export class HeaderComponent implements OnInit {
 
   data:any;
   xool:any;
+  loggedIn:boolean=false;
+  
   ngOnInit(): void {
     this.getSchools();
+    this.auth.status().subscribe(res=>{
+      // console.log(res);
+      this.loggedIn=res;
+    })
       
   }
-  constructor(private school:SliderServiceService, private router:Router){
+  constructor(private school:SliderServiceService, private router:Router, private auth:AuthServiceService){
 
   }
   getSchools(){
@@ -28,7 +35,7 @@ export class HeaderComponent implements OnInit {
   get schoolData(){
 
     const xool:any=localStorage.getItem('schoolHome');
-    console.log(xool);
+    // console.log(xool);
     
 
     return JSON.parse(xool);
@@ -37,15 +44,22 @@ export class HeaderComponent implements OnInit {
   navigateToSchool(schoolHome:any){
     this.school.SchoolHome=schoolHome;
     // console.log(schoolHome);
-    
-    this.router.navigate(['schoolHome']);
-
+    this.router.navigate(['main/schoolHome']).then(()=>{
+      window.location.reload();
+    })
   }
   
   click(){
-    this.router.navigate(['']).then(()=>{
+    this.router.navigate(['main/home']).then(()=>{
       window.location.reload();
     })
   }
 
+  logout(){
+
+    localStorage.removeItem('user');
+    this.router.navigateByUrl('/main/home').then(()=>{
+      window.location.reload();
+    });
+  }
 }

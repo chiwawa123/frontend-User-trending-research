@@ -12,6 +12,9 @@ import { SliderComponent } from './components/slider/slider.component';
 import { TopicHomeComponent } from './components/topic-home/topic-home.component';
 import { SchoolHomeComponent } from './components/school-home/school-home.component';
 import { FormsModule } from '@angular/forms';
+import { LoginComponent } from './components/login/login.component';
+import { MainComponent } from './layouts/main/main.component';
+import { ToastrModule } from 'ngx-toastr';
 
 @NgModule({
   declarations: [
@@ -22,14 +25,16 @@ import { FormsModule } from '@angular/forms';
     NavbarComponent,
     SliderComponent,
     TopicHomeComponent,
-    SchoolHomeComponent
+    SchoolHomeComponent,
+    LoginComponent,
+    MainComponent
   ],
   imports: [
     BrowserModule,
     AppRoutingModule,
     HttpClientModule,
     NgxPaginationModule,
-    FormsModule
+    FormsModule,HttpClientModule, ToastrModule.forRoot({progressBar:true,timeOut:6000,progressAnimation:'increasing',preventDuplicates:true}),
   ],
   providers: [],
   bootstrap: [AppComponent]

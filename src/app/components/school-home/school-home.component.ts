@@ -60,9 +60,10 @@ export class SchoolHomeComponent implements OnInit {
     this.slider.TopicHome=topic;
     // console.log(topic);
     
-    this.router.navigate(['topicHome']);
-
-
+   
+    this.router.navigate(['main/topicHome']).then(()=>{
+      window.location.reload();
+    })
   }
 
 }

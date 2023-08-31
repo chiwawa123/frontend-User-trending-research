@@ -14,6 +14,7 @@ export class HomeComponent implements OnInit{
   term='';
   itemsPerPage:number=6;
   totalTopics:any;
+  token:any;
 
   constructor(private sliderService:SliderServiceService,private router:Router){
 
@@ -37,7 +38,7 @@ export class HomeComponent implements OnInit{
     this.sliderService.TopicHome=topic;
     // console.log(topic);
     
-    this.router.navigate(['topicHome']);
+    this.router.navigate(['main/topicHome']);
 
 
   }

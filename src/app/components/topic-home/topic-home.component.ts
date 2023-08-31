@@ -1,6 +1,8 @@
 import { Component, OnInit } from '@angular/core';
+import { AuthServiceService } from 'src/app/Services/auth-service.service';
 import { SliderServiceService } from 'src/app/Services/slider-service.service';
 import { Review } from 'src/app/review.model';
+import { ToastrService } from 'ngx-toastr';
 
 @Component({
   selector: 'app-topic-home',
@@ -12,7 +14,9 @@ export class TopicHomeComponent implements OnInit {
   review:any;
   like:any;
   data:any;
+  student:any;
   reviewById:any;
+  header:any;
 
   rev = new Review();
   
@@ -22,7 +26,7 @@ export class TopicHomeComponent implements OnInit {
   ngOnInit() {
     this.likedReview();
     this.testimonialTopic();
-
+    this.User();
   }
 
   get Topic() {
@@ -32,7 +36,17 @@ export class TopicHomeComponent implements OnInit {
     this.topic = JSON.parse(topic);
     // console.log(this.topic);
 
-    return JSON.parse(topic);
+    return (this.topic);
+  }
+
+  get User() {
+    const user: any = localStorage.getItem('user');
+    // console.log(topic);
+
+    this.student = JSON.parse(user);
+    // console.log(this.student.student_id);
+
+    return JSON.parse(this.student);
   }
 
   postReview(){
@@ -42,45 +56,23 @@ export class TopicHomeComponent implements OnInit {
     this.rev.dis_liked = 0;
 
     formdata.append('topic_id', this.topic.topic_id);
+    formdata.append('student_id', this.student.student_id);
     formdata.append('is_liked', this.rev.is_liked);
     formdata.append('dis_liked', this.rev.dis_liked);
 
+    this.rev.topic_id = this.topic.topic_id;
+    this.rev.student_id=this.student.student_id;
+    this.rev.is_liked=this.rev.is_liked;
 
-
-    this.sliderService.addReview(formdata).subscribe(res=>{
+    this.sliderService.addReview(this.rev).subscribe(res=>{
       this.review=res;
       this.likedReview()
-      
-      // console.log(this.review);
-
-    });
-  }
-  passReview(){
-    var formdata = new FormData();
-
-    this.rev.is_liked = 0;
-    this.rev.dis_liked = 1;
-
-    formdata.append('topic_id', this.topic.topic_id);
-    formdata.append('is_liked', this.rev.is_liked);
-    formdata.append('dis_liked', this.rev.dis_liked);
-
-
-
-    this.sliderService.addReview(formdata).subscribe(res=>{
-      this.review=res;
-      this.likedReview();
-      
-      // console.log(this.review);
 
     });
   }
 
   likedReview(){
     var formdata = new FormData();
-
-    console.log('Topic ID', this.Topic.topic_id);
-    
 
     formdata.append('topic_id', this.Topic.topic_id);
 
@@ -97,9 +89,6 @@ export class TopicHomeComponent implements OnInit {
 
     var formdata = new FormData();
 
-    // console.log('Topic ID', this.Topic.topic_id);
-    
-
     formdata.append('topic_id', this.Topic.topic_id);
 
     this.sliderService.topicTestimonial(formdata).subscribe(res=>{
@@ -113,11 +102,6 @@ export class TopicHomeComponent implements OnInit {
       this.data.topicTestimonial.forEach((element: any) => {
         this.topicTestimonial = element
       });
-
-
-      
-      console.log('Data', this.topicTestimonial);
-      console.log('Data', this.testimonials);
 
     });
   }
