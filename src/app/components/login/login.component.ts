@@ -41,7 +41,7 @@ export class LoginComponent implements OnInit {
   
       localStorage.setItem('user',JSON.stringify(this.data))
 
-      this.route.navigate(['main/home']).then(()=>{
+      this.route.navigate(['/home']).then(()=>{
         window.location.reload();
       })
 

@@ -20,7 +20,6 @@ export class HeaderComponent implements OnInit {
       // console.log(res);
       this.loggedIn=res;
     })
-      
   }
   constructor(private school:SliderServiceService, private router:Router, private auth:AuthServiceService){
 
@@ -30,27 +29,24 @@ export class HeaderComponent implements OnInit {
       this.data=res;
       // console.log(this.data);
     });
-
   }
   get schoolData(){
 
     const xool:any=localStorage.getItem('schoolHome');
     // console.log(xool);
-    
-
     return JSON.parse(xool);
 
   }
   navigateToSchool(schoolHome:any){
     this.school.SchoolHome=schoolHome;
     // console.log(schoolHome);
-    this.router.navigate(['main/schoolHome']).then(()=>{
+    this.router.navigate(['/schoolHome']).then(()=>{
       window.location.reload();
     })
   }
   
   click(){
-    this.router.navigate(['main/home']).then(()=>{
+    this.router.navigate(['/home']).then(()=>{
       window.location.reload();
     })
   }
@@ -58,7 +54,7 @@ export class HeaderComponent implements OnInit {
   logout(){
 
     localStorage.removeItem('user');
-    this.router.navigateByUrl('/main/home').then(()=>{
+    this.router.navigateByUrl('/home').then(()=>{
       window.location.reload();
     });
   }

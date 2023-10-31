@@ -1,0 +1,120 @@
+<div id="banner-area" class="banner-area" style="background-image:url(assets/images/all.png)">
+    <div class="banner-text">
+      <div class="container">
+          <div class="row">
+            <div class="col-lg-12">
+                <div class="banner-heading">
+                  <h1 class="banner-title">{{data[0].topic_category_name}}</h1>
+                </div>
+            </div><!-- Col end -->
+          </div><!-- Row end -->
+      </div><!-- Container end -->
+    </div><!-- Banner text end -->
+  </div><!-- Banner area end --> 
+  
+  <section id="news" class="news">
+    <div class="container">
+      <div class="row text-center">
+          <div class="col-12">
+           
+          </div>
+      </div>
+      <!--/ Title row end -->
+  
+      <div class="row">
+  
+          <div class="col-lg-4 col-md-6 mb-4 cardd" *ngFor="let d of data">
+            <div class="latest-post">
+                <div class="latest-post-media">
+                  <a (click)="navigateToTopic(d)" class="latest-post-img">
+                    
+                      <img loading="lazy" class="img-fluid" src="{{imagePath}}{{d.image}}" style="height: 300px;width: 300px;" alt="img">
+                      
+                  </a>
+                </div>
+                <div class="post-body">
+                  <h4 class="post-title">
+                    <div *ngIf="this.topicLogin"> <a (click)="navigateToTopic(d)" data-toggle="modal"
+                      data-target="#ghost"  class="d-inline-block">{{d.topic_name}}</a></div>
+                    <div *ngIf="!this.topicLogin"> <a (click)="navigateToTopicHomeafterLogin(d)" data-toggle="modal"
+                      data-target="#ghost"  class="d-inline-block">{{d.topic_name}}</a></div>
+                    
+                     
+                  </h4>
+                  <div class="latest-post-meta">
+                      <span class="post-item-date" style="color: brown;">
+                        <i class="fa fa-clock-o"></i>{{d.date_posted}}
+                        <a (click)="navigateToCategoryHome(d)" class="slide-title-box" >{{d.topic_category_name}}</a>
+                    
+                      </span>
+                  </div>
+                </div>
+            </div><!-- Latest post end -->
+          </div><!-- 3rd post col end -->
+          <div
+          class="modal fade"
+          id="ghost"
+          tabindex="-1"
+          aria-labelledby="exampleModalLabel"
+          aria-hidden="true"
+        >
+          <div class="modal-dialog modal-dialog-centered">
+            <div class="modal-content">
+              <div class="modal-header">
+                <h1 class="modal-title fs-5" id="exampleModalLabel">
+                  Login and Read
+                </h1>
+                <button
+                  type="button"
+                  class="btn-close"
+                  data-dismiss="modal"
+                  aria-label="Close"
+                ></button>
+              </div>
+              <div class="modal-body">
+                <form (ngSubmit)="onSubmit()" #LoginForm="ngForm" >
+                  <div class="mb-3">
+                    <label for="reg_number" class="col-form-label">Reg Number</label>
+                    <input type="text" class="form-control" id="reg_number" name="reg_number" [(ngModel)]="form.reg_number">
+                  </div>
+                  <div class="mb-3">
+                    <label for="password" class="col-form-label">Password</label>
+                    <input type="password" name="password" class="form-control" id="password"  [(ngModel)]="form.password">
+                  </div>
+
+                  <div class="row">
+                    <!-- /.col -->
+                    <div class="col-4">
+                      <button type="submit" style="font-size: 10px;" class="btn btn-primary btn-block">login</button>
+                    </div>
+                    <button
+                    type="button"
+                    class="btn btn-secondary"
+                    data-dismiss="modal"
+                  >
+                    Close
+                  </button>
+                    <!-- /.col -->
+                  </div>
+                </form>
+                <div class="row">
+                  <!-- /.col -->
+                  <div class="col-md-12 text-right">
+                    <a style="font-size: 14px;color: #24b0ed;" target="_blank" href="https://elearning.cut.ac.zw/portal/index.php/cut_elearning/home/re_sign_up">Forgot Password?</a>
+                  </div>
+                  <!-- /.col -->
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+         
+      </div>
+      <div class="row">
+        <!-- <pagination-controls class="text-primary text-center" (pageChange)="p=$event" >
+
+        </pagination-controls> -->
+      </div>
+    </div>
+    <!--/ Container end -->
+  </section>

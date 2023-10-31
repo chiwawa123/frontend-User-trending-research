@@ -4,10 +4,11 @@
       <div class="row">
           <div class="col-lg-8 col-md-8">
             <ul class="top-info text-center text-md-left">
-                <li><i class="fas fa-map-marker-alt"></i> <p class="info-text">Chinhoyi University of Technology</p>
+                <li><i class="fas fa-map-marker-alt"></i> <p class="info-text" style="color: #fff;">Chinhoyi University of Technology</p>
                 </li>
             </ul>
           </div>
+          
        
           <!--/ Top info end -->
 
@@ -15,10 +16,10 @@
             <ul class="list-unstyled">
                 <li>
                   <a title="Facebook" href="https://facebbok.com/themefisher.com">
-                      <span class="social-icon"><i class="fab fa-facebook-f"></i></span>
+                      <span class="social-icon"><i style="color: #fff;" class="fab fa-facebook-f"></i></span>
                   </a>
                   <a title="Twitter" href="https://twitter.com/themefisher.com">
-                      <span class="social-icon"><i class="fab fa-twitter"></i></span>
+                      <span class="social-icon"><i style="color: #fff;" class="fab fa-twitter"></i></span>
                   </a>
                  
                
@@ -32,24 +33,6 @@
     <!--/ Container end -->
 </div>
 
-<div id="top-bar" class="top-bar" style="background-color: #ebf8ff;">
-    <div class="container">
-      <div class="row">
-
-          <div class="col-lg-8 col-md-8" >
-            <ul class="top-info text-center text-md-left">
-                <li><p class="info-text">CUT | TRENDING RESEARCH</p>
-                </li>
-            </ul>
-          </div>
-          <!--/ Top info end -->
-
-          <!--/ Top social end -->
-      </div>
-      <!--/ Content row end -->
-    </div>
-    <!--/ Container end -->
-</div>
 <!--/ Topbar end -->
 <!-- Header start -->
 <header id="header" class="header-one">
@@ -58,8 +41,8 @@
   <div class="logo-area">
       <div class="row align-items-center">
         <div class="logo col-lg-3 text-center text-lg-left mb-3 mb-md-5 mb-lg-0">
-            <a class="d-block" href="index.html">
-              <img loading="lazy" src="assets/images/log.png" style="width: 170px;height: 100px;" alt="Constra">
+            <a class="d-block" routerLink="/home">
+              <img loading="lazy" src="assets/images/log.png" style="width: 170px;height: 100px;" >
             </a>
         </div><!-- logo end -->
 
@@ -68,29 +51,29 @@
               <li>
                 <div class="info-box">
                   <div class="info-box-content">
-                      <p class="info-box-title">Call Us</p>
-                      <p class="info-box-subtitle">(+9) 847-291-4353</p>
+                      <p class="info-box-title" style="color: #24b0ed; ">Call Us</p>
+                      <p class="info-box-subtitle" style="color: #caa531;">Tel: +263 6721 22203-5</p>
                   </div>
                 </div>
               </li>
               <li>
                 <div class="info-box">
                   <div class="info-box-content">
-                      <p class="info-box-title">Email Us</p>
-                      <p class="info-box-subtitle">office@cut.ac.zw</p>
+                      <p class="info-box-title" style="color: #24b0ed;">Email Us</p>
+                      <p class="info-box-subtitle" style="color: #caa531;">office@cut.ac.zw</p>
                   </div>
                 </div>
               </li>
               <li class="last">
                 <div class="info-box last">
                   <div class="info-box-content">
-                      <p class="info-box-title">Global Certificate</p>
-                      <p class="info-box-subtitle">ISO 9001:2017</p>
+                      <p class="info-box-title" style="color: #24b0ed;">Global Certificate</p>
+                      <p class="info-box-subtitle" style="color: #caa531;">ISO 9001:2017</p>
                   </div>
                 </div>
               </li>
               <li class="header-get-a-quote">
-                <a class="btn btn-primary" href="contact.html">Get In Touch</a>
+                <a class="btn btn-primary" routerLink="/contact">Get In Touch</a>
               </li>
             </ul><!-- Ul end -->
         </div><!-- header right end -->
@@ -124,17 +107,20 @@
                       </ul>
                   </li>
           
-                  <li class="nav-item dropdown">
+                  <!-- <li class="nav-item dropdown">
                       <a href="#" class="nav-link dropdown-toggle" data-toggle="dropdown">Category <i class="fa fa-angle-down"></i></a>
                       <ul class="dropdown-menu" role="menu">
                         <li><a href="projects.html">Projects All</a></li>
                         <li><a href="projects-single.html">Projects Single</a></li>
                       </ul>
-                  </li>
+                  </li> -->
+
+          
+                  <li class="nav-item"><a class="nav-link" routerLink="/contact">Contact</a></li>
                   <li class="nav-item"><a  class="nav-link" routerLink="login" *ngIf="!loggedIn">Login</a></li>
                   <li class="nav-item"><a  class="nav-link" (click)="logout()" *ngIf="loggedIn" >Logout</a></li>
-          
-                  <li class="nav-item"><a class="nav-link" href="contact.html">Contact</a></li>
+             
+                
                  
                 </ul>
             </div>

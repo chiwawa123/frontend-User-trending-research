@@ -1,66 +1,195 @@
 <app-slider></app-slider>
 <section class="call-to-action-box no-padding">
-    <div class="container">
-      <div class="action-style-box">
-          <div class="row align-items-center">
-            <div class="col-md-8 text-center text-md-left">
-                <div class="call-to-action-text">
-                  <h3 class="action-title">CUT TRENDING RESEARCH TOPICS</h3>
-                </div>
-            </div><!-- Col end -->
-            <div class="col-md-4 text-center text-md-right mt-3 mt-md-0">
-                <div class="call-to-action-btn">
-                  <a class="btn btn-dark" href="#">Contact | Us</a>
-                </div>
-            </div><!-- col end -->
-          </div><!-- row end -->
-      </div><!-- Action style box -->
-    </div><!-- Container end -->
-  </section><!-- Action end -->
-
- 
-  
-  <section id="news" class="news">
-    <div class="container">
-      <div class="row text-center">
-          <div class="col-12">
-           
+  <div class="container">
+    <div class="action-style-box">
+      <div class="row align-items-center">
+        <div class="col-md-8 text-center text-md-left">
+          <div class="call-to-action-text">
+            <div class="content">
+              <div class="visible">
+               
+                <ul>
+                  <li>TRENDING</li>
+                  <li>RESEARCH</li>
+                  <li>TOPICS</li>
+                </ul>
+              </div>
+            </div>
           </div>
+         
+          <form class="d-flex" role="search">
+            <input class="form-control me-2" name="termm"  [(ngModel)]="termm" type="search" placeholder="Search a topic ....." aria-label="Search">
+            <button class="btn btn-outline-primary" type="submit">Search </button>
+          </form>
+
+          <!-- <div *ngFor="let result of data" (click)="getTopicDetail(result)" style="cursor: pointer;">
+            <div class="card card-body">
+              {{result.topic_name}}
+            </div>
+
+          </div> -->
+        </div>
+        <!-- Col end -->
+        <div class="col-md-4 text-center text-md-right mt-3 mt-md-0">
+          <div class="call-to-action-btn">
+            <a class="btn btn-primary" routerLink="/contact">Contact | Us</a>
+          </div>
+        </div>
+        <!-- col end -->
       </div>
-      <!--/ Title row end -->
-  
-      <div class="row">
-  
-          <div class="col-lg-4 col-md-6 mb-4" *ngFor="let d of data | paginate:{itemsPerPage:itemsPerPage,currentPage:p}">
-            <div class="latest-post">
-                <div class="latest-post-media">
-                  <a (click)="navigateToTopic(d)" class="latest-post-img">
-                      <img loading="lazy" class="img-fluid" src="{{imagePath}}{{d.image}}" style="height: 300px;width: 300px;" alt="img">
-                      
-                  </a>
+      <!-- row end -->
+    </div>
+    <!-- Action style box -->
+  </div>
+  <!-- Container end -->
+</section>
+<!-- Action end -->
+
+<section id="news" class="news">
+  <div class="container">
+    <div class="row text-center">
+      <div class="col-12"></div>
+    </div>
+    <!--/ Title row end -->
+
+    <div class="row">
+      <div
+        class="col-lg-4 col-md-6 mb-4 cardd"
+        *ngFor="
+          let d of data |filter: termm 
+            | paginate : { itemsPerPage: itemsPerPage, currentPage: p }">
+        <div class="latest-post">
+          <div class="latest-post-media">
+            <a (click)="navigateToTopic(d)" class="latest-post-img">
+              <img
+                loading="lazy"
+                class="img-fluid"
+                src="{{ imagePath }}{{ d.image }}"
+                style="height: 300px; width: 300px"
+                alt="img"
+              />
+            </a>
+            
+          </div>
+          <div class="post-body">
+            <h4 class="post-title text-truncate" style="max-width: 300px">
+              <div *ngIf="this.topicLogin">
+                <a (click)="navigateToTopic(d)" class="d-inline-block"
+                  ><span>{{ d.topic_name }}</span></a
+                >
+              </div>
+              <div *ngIf="!this.topicLogin">
+                <a
+                  (click)="navigateToTopicHomeafterLogin(d)"
+                  data-toggle="modal"
+                  data-target="#ghost"
+                  class="d-inline-block"
+                  ><span>{{ d.topic_name }}</span></a
+                >
+              </div>
+            </h4>
+            <div class="latest-post-meta">
+              <span class="post-item-date" style="color: brown;">
+                <i class="fa-solid fa-calendar"></i>{{ d.date_posted }}
+              </span>
+            </div>
+          </div>
+          <!-- Button trigger modal -->
+          <!-- Modal -->
+          <div
+            class="modal fade"
+            id="ghost"
+            tabindex="-1"
+            aria-labelledby="exampleModalLabel"
+            aria-hidden="true">
+            <div class="modal-dialog modal-dialog-centered">
+              <div class="modal-content">
+                <div class="modal-header">
+                  <button
+                    type="button"
+                    class="btn-close"
+                    data-dismiss="modal" 
+                    aria-label="Close"
+                  ></button>
                 </div>
-                <div class="post-body">
-                  <h4 class="post-title">
-                      <a  (click)="navigateToTopic(d)"  class="d-inline-block"><span>{{d.topic_name}}</span></a>
-                  </h4>
-                  <div class="latest-post-meta">
-                      <span class="post-item-date">
-                        <i class="fa fa-clock-o"></i>{{d.date_posted}}
-                      </span>
+                <div class="modal-body" >
+                  <div class="card card-outline card-primary">
+                    <div class="card-header text-center">
+                      <a class="d-block" href="index.html">
+                          <img loading="lazy" src="assets/images/log.png" style="width: 170px;height: 100px;">
+                        </a>
+                      
+                    </div>
+                    <div class="card-body" >
+                      <p class="login-box-msg">Sign in and read topic</p>
+                      {{error}}
+                
+                      <form (ngSubmit)="onSubmit()" #LoginForm="ngForm" >
+                        <div class="alert alert-danger" [hidden]="!error">
+                          {{error}}
+                      </div>
+                        <div class="input-group mb-3">
+                          <input type="text" class="form-control" placeholder="reg number" name="reg_number" [(ngModel)]="form.reg_number">
+                          <div class="input-group-append">
+                            <div class="input-group-text">
+                              <span class="fas fa-envelope"></span>
+                            </div>
+                          </div>
+                        </div>
+                        <div class="input-group mb-3">
+                          <input type="password" class="form-control" placeholder="Password" name="password" [(ngModel)]="form.password" >
+                          <div class="input-group-append">
+                            <div class="input-group-text">
+                              <span class="fas fa-lock"></span>
+                            </div>
+                          </div>
+                        </div>
+                        <div class="row">
+                          <!-- /.col -->
+                          <div class="col-4">
+                            <button type="submit" style="font-size: 10px;" class="btn btn-primary btn-block">login</button>
+                          </div>
+                          <!-- /.col -->
+                        </div>
+          
+                        
+                      </form>
+                      <div class="row">
+                        <!-- /.col -->
+                        <div class="col-md-12 text-right">
+                          <a style="font-size: 14px;color: black;" target="_blank" href="https://elearning.cut.ac.zw/portal/index.php/cut_elearning/home/re_sign_up">Forgot Password?</a>
+                        </div>
+                        <!-- /.col -->
+                      </div>
+                   
+              
+                      
+                    </div>
+                    
+                    <!-- /.card-body -->
                   </div>
                 </div>
-            </div><!-- Latest post end -->
-          </div><!-- 3rd post col end -->
-          <div>
-            <pagination-controls class="text-primary text-center" (pageChange)="p=$event" >
-
-            </pagination-controls>
+              </div>
+            </div>
           </div>
+        </div>
+        <!-- Latest post end -->
       </div>
-      <!--/ Content row end -->
-
-  
+      <!-- 3rd post col end -->
     </div>
-    <!--/ Container end -->
-  </section>
-  <!--/ News end -->
+    <div>
+      <pagination-controls
+        class="text-primary text-center"
+        (pageChange)="p = $event"
+      >
+      </pagination-controls>
+    </div>
+
+    <!--/ Content row end -->
+  </div>
+  <!--/ Container end -->
+</section>
+
+
+
+<!--/ News end -->

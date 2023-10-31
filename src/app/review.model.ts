@@ -3,4 +3,6 @@ export class Review {
     dis_liked:any;
     topic_id:any;
     student_id:any;
+    is_viewed:any;
+   
 }
