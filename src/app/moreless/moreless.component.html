@@ -1,6 +1,6 @@
 <span *ngIf="text.length <= wordLimit">{{text}}</span>
 
-<span *ngIf="text.length > wordLimit && !showMore">{{text.substring(0,wordLimit)}}.......<span class="font-weight-bold text-primary hand" (click)="showMore=true">show more</span></span>
+<span *ngIf="text.length > wordLimit && !showMore">{{text.substring(0,wordLimit)}}.......<span class="font-weight-bold text-primary hand" (click)="showMore=true">read more</span></span>
 
-<span *ngIf="text.length > wordLimit && showMore">{{text}}<span class="font-weight-bold text-primary hand" (click)="showMore=false">show less</span></span>
+<span *ngIf="text.length > wordLimit && showMore">{{text}}<span class="font-weight-bold text-primary hand" (click)="showMore=false">read less</span></span>
 

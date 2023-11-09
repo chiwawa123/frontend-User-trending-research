@@ -61,7 +61,7 @@
                  
                     </form>
                   </span>
-                        <span class="post-author" style="color: #24b0ed;">
+                        <span class="post-author" style="color: #d73535;">
                             <i class="far fa-folder-open"></i><a (click)="navigateToCategoryHome(topicTestimonial)">  {{topicTestimonial?.topic_category_name}}</a>
                           </span>
                           <span class="post-comment" style="color: #24b0ed;" *ngIf=" count[0].count_testimonial > 1"><i class="far fa-comment"></i> {{count[0].count_testimonial}}<a 
@@ -89,7 +89,7 @@
               </div>
 
               <div class="entry-content" style="text-align: justify;">
-                <!-- <app-moreless [text]="topicTestimonial.description" [wordLimit]="100"></app-moreless> -->
+                <!-- <app-moreless [text]="topicTestimonial.description" [wordLimit]="10"></app-moreless> -->
                 <p [innerHTML]="topicTestimonial.description" > </p>
                
 
@@ -114,11 +114,11 @@
                
                 <li class="d-flex align-items-center">
                   <div class="posts-thumb">
-                    <a (click)="navigateToTopic(t)"><img loading="lazy" alt="news-img" src="{{imagePath}}{{t.image}}"></a>
+                    <a style="cursor: pointer;" (click)="navigateToTopic(t)"><img loading="lazy" alt="news-img" src="{{imagePath}}{{t.image}}"></a>
                   </div>
                   <div class="post-info">
                     <h4 class="entry-title">
-                      <a (click)="navigateToTopic(t)"><span style="font-size:x-small;">{{t.topic_name}}</span></a>
+                      <a style="cursor: pointer;" (click)="navigateToTopic(t)"><span style="font-size:x-small;">{{t.topic_name}}</span></a>
                     </h4>
                   </div>
                 </li><!-- 2nd post end-->
@@ -137,7 +137,14 @@
           <div class="container">
               <div class="row">
                   <div class="col-sm-5 col-md-6 col-12 pb-4">
-                      <h1>Testimonials</h1>
+                     
+                      <div class="author-box d-nlock d-sm-flex">
+                        <div class="author-info">
+                          <h1 style="color: brown;">Testimonials</h1>
+                      
+              
+                        </div>
+                      </div>
                       
                       <div *ngFor="let d of data.testimonials | paginate : { itemsPerPage: itemsPerPage, currentPage: p}" class="comment mt-4 text-justify float-left">
                           <img  (error)="handleMissingImage($event)" src="https://www.cut.ac.zw/portal/ids/{{d.reg_number}}.JPG" alt="" class="rounded-circle" width="70" height="70">.
@@ -146,7 +153,8 @@
                           <h4>{{d.first_name}} {{d.surname}}</h4>,
                           <span class="text-right">{{d.date_posted | date}}</span>
                           <br>
-                          <p>{{d.description}}</p>
+                          <!-- <p>{{d.description}}</p> -->
+                          <app-moreless [text]="d.description" [wordLimit]="100"></app-moreless>
                       </div>
                      
                     
@@ -159,7 +167,7 @@
                     padding: 20px;" role="form" id="algin-form" (submit)="addTestimonial()" >
                    
                           <div class="form-group">
-                              <h4>Leave a Testimonial</h4>
+                              <h4 style="color: brown;">Leave a Testimonial</h4>
   
                               <textarea [(ngModel)]="test.description" name="description" id=""msg cols="30" rows="5" class="form-control" style="background-color: #fff;"></textarea>
                           </div>

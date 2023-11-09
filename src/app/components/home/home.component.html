@@ -74,7 +74,7 @@
           <div class="post-body">
             <h4 class="post-title text-truncate" style="max-width: 300px">
               <div *ngIf="this.topicLogin">
-                <a (click)="navigateToTopic(d)" class="d-inline-block"
+                <a (click)="navigateToTopic(d)" style="cursor: pointer !important;" class="d-inline-block"
                   ><span>{{ d.topic_name }}</span></a
                 >
               </div>
@@ -84,7 +84,7 @@
                   data-toggle="modal"
                   data-target="#ghost"
                   class="d-inline-block"
-                  ><span>{{ d.topic_name }}</span></a
+                  ><span style="cursor: pointer !important;">{{ d.topic_name }}</span></a
                 >
               </div>
             </h4>
@@ -116,13 +116,15 @@
                   <div class="card card-outline card-primary">
                     <div class="card-header text-center">
                       <a class="d-block" href="index.html">
-                          <img loading="lazy" src="assets/images/log.png" style="width: 170px;height: 100px;">
+                          <img loading="lazy" src="assets/images/lg.png" style="width: 170px;height: 100px;">
                         </a>
                       
                     </div>
                     <div class="card-body" >
-                      <p class="login-box-msg">Sign in and read topic</p>
+                     
                       {{error}}
+
+                      <p class="login-box-msg" style="color: brown;">Sign in and read Topic</p>
                 
                       <form (ngSubmit)="onSubmit()" #LoginForm="ngForm" >
                         <div class="alert alert-danger" [hidden]="!error">
@@ -132,7 +134,7 @@
                           <input type="text" class="form-control" placeholder="reg number" name="reg_number" [(ngModel)]="form.reg_number">
                           <div class="input-group-append">
                             <div class="input-group-text">
-                              <span class="fas fa-envelope"></span>
+                              <span class="fas fa-user"></span>
                             </div>
                           </div>
                         </div>
